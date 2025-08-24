@@ -1,13 +1,36 @@
 FROM atendai/evolution-api:v2.0.10
 
-# Configurações mínimas
+# Variáveis obrigatórias
 ENV SERVER_PORT=10000
 ENV AUTHENTICATION_API_KEY=B6D711FCDE4D4FD5936544120E713976
 ENV AUTHENTICATION_JWT_SECRET=L=0c-{3Q&b?2;Lq.i_<M9(+_8g!83V^kCB;u
-ENV LOG_LEVEL=ERROR
-ENV DATABASE_ENABLED=false
+ENV AUTHENTICATION_TYPE=jwt
+
+# Database (usando local/arquivo)
+ENV DATABASE_ENABLED=true
+ENV DATABASE_PROVIDER=sqlite
+ENV DATABASE_CONNECTION_URI=file:./db.sqlite
+ENV DATABASE_CONNECTION_CLIENT_NAME=evolution_db
+
+# Redis desabilitado
 ENV REDIS_ENABLED=false
+
+# Configurações de servidor
+ENV SERVER_TYPE=http
+ENV CORS_ORIGIN=*
+ENV CORS_METHODS=GET,POST,PUT,DELETE
+ENV CORS_CREDENTIALS=true
+
+# Logs
+ENV LOG_LEVEL=ERROR
+ENV LOG_COLOR=false
+
+# WebSocket desabilitado para simplicidade
 ENV WEBSOCKET_ENABLED=false
+
+# Configurações de instância
+ENV DEL_INSTANCE=false
+ENV INSTANCE_EXPIRY_TIME=false
 
 EXPOSE 10000
 
